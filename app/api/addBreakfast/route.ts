@@ -15,31 +15,6 @@ export async function GET() {
   }
 }
 
-export async function singleData(req: Response) {
-  try {
-    const decoder = new TextDecoder();
-    const body = decoder.decode(await req.arrayBuffer());
-    const requestBody = JSON.parse(body);
-
-    const id = requestBody;
-
-    const fetchBreakfast = await prisma.breakfast.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    console.log(fetchBreakfast);
-    return NextResponse.json(fetchBreakfast, { status: 200 });
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json(
-      { message: "There was an error while fetching the data" },
-      { status: 500 }
-    );
-  }
-}
-
 //Creating post request to add breakfast
 export async function POST(req: Request) {
   try {

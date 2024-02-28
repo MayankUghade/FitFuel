@@ -33,6 +33,7 @@ const MealDisplay = ({ mealType, mealItems, onDelete }: MealDisplayProps) => (
         <div className="flex flex-col items-center justify-center gap-2">
           {mealItems.map((item) => (
             <DataCard
+              key={item.id}
               data={item}
               id={item.id}
               onDelete={() => onDelete(item.id)}

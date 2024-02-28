@@ -31,13 +31,12 @@ export default function DisplayBreakfast() {
 
       <div className="flex flex-col gap-5 items-center justify-center">
         {breakFastData.map((items: any) => (
-          <div className="flex flex-col gap-2">
+          <div key={items.id} className="flex flex-col gap-2">
             <p className="flex text-gray-500 text-sm ">
               <span className="text-md font-semibold">Created at:</span>{" "}
               {new Date(items.createdAt).toISOString().split("T")[0]}
             </p>
             <DataCard
-              key={items.id}
               data={items}
               id={items.id}
               onDelete={() => Delete("addBreakfast", items.id)}

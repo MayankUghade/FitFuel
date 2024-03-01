@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { fetchCalories } from "@/Data/FetchData";
+import CaloriesData from "@/Data/caloriesData";
 import Graphs from "./Graph";
 import AddCalorie from "./AddCalorie";
 import AddWater from "./AddWater";
@@ -13,6 +14,8 @@ const Dashboard = () => {
   const [calorieGoal, setCalorieGoal] = useState(0);
 
   const userEmail = data?.user?.email;
+
+  const consumedCalories = CaloriesData();
 
   const fetchData = async () => {
     try {
@@ -57,10 +60,10 @@ const Dashboard = () => {
           </p>
           <div className="flex items-center gap-2 justify-between md:text-2xl">
             <p className="text-gray-500 dark:text-gray-400 ">
-              Calories Consumed: <b>1200</b>
+              Calories Consumed: <b>{consumedCalories}</b>
             </p>
             <div className="flex-1 hidden sm:flex p-5">
-              <Progress value={(1200 / calorieGoal) * 100} />
+              <Progress value={(consumedCalories / calorieGoal) * 100} />
             </div>
           </div>
         </div>
